@@ -1,199 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      href="https://cdn.iconscout.com/icon/premium/png-256-thumb/encryption-19-109178.png?f=webp&w=512"
-      type="image/x-icon"
-    />
-    <title>Caesar Cipher</title>
-  </head>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    h1 {
-      text-align: center;
-      margin: 20px 0;
-    }
-    table {
-      margin: 0 auto;
-      border-collapse: collapse;
-      width: 50%;
-      max-width: 500px;
-    }
-    td {
-      padding: 10px;
-    }
-    button {
-        width: 100px;
-      display: inline-block;
-      padding: 8px 12px;
-      background-color: #4caf50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #3e8e41;
-    }
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/encryption-19-109178.png?f=webp&w=512"
+    type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+  <title>Caesar Cipher</title>
+</head>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    font-family: "Josefin Sans", sans-serif;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  button {
+    width: 100px;
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #3e8e41;
+  }
+
+  .caesar {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px auto;
+  }
+
+  .box {
+    display: grid;
+    align-items: center;
+    width: 350px;
+    height: fit-content;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  }
+
+  .inp {
+    margin-bottom: 10px;
+  }
+
+  .inp label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .inp input[type="text"] {
+    width: 60%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+
+  .title {
+    margin: 0;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: "Lilita One", cursive;
+  }
+
+  .bs {
+    display: flex;
+    gap: 1rem;
+  }
+
+  #result-encrypt {
+    padding: 0.5rem;
+    border: 1px solid red;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+  }
+
+  #result-decrypt {
+    padding: 0.5rem;
+    border: 1px solid red;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  footer {
+    margin-top: auto;
+    background-color: #212529;
+    color: #fff;
+  }
+
+  .middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer-widget h4 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+
+  .footer-widget p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #fff;
+  }
+
+  /* Flex untuk Footer Widget */
+  .footer-widget {
+    width: 900px;
+  }
+
+  .footer-widget p {
+    margin-bottom: 5px;
+  }
+
+  .copy {
+    margin-top: 30px;
+  }
+
+  @media only screen and (max-width: 768px) {
     .caesar {
+      display: grid;
+    }
+
+    .footer-widget {
       display: flex;
-      justify-content:space-evenly;
-      margin: 20px auto;
+      flex-direction: column;
     }
-    .box {
-        display: grid;
-        align-items: center;
-      width: 350px;
-      height: fit-content;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    }
-    .inp {
-      margin-bottom: 10px;
-    }
+  }
+</style>
 
-    .inp label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    .inp input[type="text"] {
-      width: 60%;
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-    }
-    .title {
-      margin: 0;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .bs{
-        display: flex;
-        gap: 1rem;
-    }
-    span {
-      padding: 0.5rem;
-      border: 1px solid red;
-    }
-  </style>
-  <body>
-    <h1>Tugas Pemrograman Web</h1>
+<body>
+  <h1>Tugas Pemrograman Web</h1>
 
-    <div class="caesar">
-      <div class="box">
-        <h3 class="title">Enskripsi Caesar Cipher</h3>
-        <div class="inp">
-          <label for="plain-text">Plain Text</label>
-          <input type="text" id="plain-text"/>
-        </div>
-        <div class="inp">
-          <label for="key-encrypt">Key Number</label>
-          <input type="text" id="key-encrypt" />
-        </div>
-        <div class="bs">
-            <button onclick="encrypt()">Enskripsi</button>
-            <span id="result-encrypt"></span>
-        </div>
+  <div class="caesar">
+    <div class="box">
+      <h3 class="title">Enskripsi Caesar Cipher</h3>
+      <div class="inp">
+        <label for="plain-text">Plain Text</label>
+        <input type="text" id="plain-text" />
       </div>
-
-      <div class="box">
-        <h3 class="title">Deskripsi Caesar Cipher</h3>
-        <div class="inp">
-          <label for="plain-text">Cipher Text</label>
-          <input type="text" id="cipher-text"/>
-        </div>
-        <div class="inp">
-          <label for="key-decrypt">Key Number</label>
-          <input type="text" id="key-decrypt"/>
-        </div>
-        <div class="bs">
-            <button onclick="decrypt()">Deskripsi</button>
-            <span id="result-decrypt" aria-placeholder="result"></span>
-        </div>
+      <div class="inp">
+        <label for="key-encrypt">Key Number</label>
+        <input type="text" id="key-encrypt" />
+      </div>
+      <div class="bs">
+        <button onclick="encrypt()">Enskripsi</button>
+        <span id="result-encrypt"></span>
       </div>
     </div>
 
-    <table>
-      <tr>
-        <td>Nama :</td>
-        <td>Mohammad Annan Makruf Mustofa</td>
-      </tr>
-      <tr>
-        <td>NPM :</td>
-        <td>2113030041</td>
-      </tr>
-      <tr>
-        <td>Kelas :</td>
-        <td>Sistem Informasi 2A</td>
-      </tr>
-    </table>
+    <div class="box">
+      <h3 class="title">Deskripsi Caesar Cipher</h3>
+      <div class="inp">
+        <label for="plain-text">Cipher Text</label>
+        <input type="text" id="cipher-text" />
+      </div>
+      <div class="inp">
+        <label for="key-decrypt">Key Number</label>
+        <input type="text" id="key-decrypt" />
+      </div>
+      <div class="bs">
+        <button onclick="decrypt()">Deskripsi</button>
+        <span id="result-decrypt" aria-placeholder="result"></span>
+      </div>
+    </div>
+  </div>
 
-    <script>
-      const encrypt = () => {
-        const plaintextInput = document.getElementById("plain-text");
-        const keyInput = document.getElementById("key-encrypt");
-        const resultElement = document.getElementById("result-encrypt");
+  <footer class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="middle">
+          <div class="footer-widget d-flex flex-column">
+            <p class="text-center">Mohammad Annan Makruf Mustofa</p>
+            <p class="text-center">2113030041</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mb-0">
+            <div class="text-center copy">
+              <p>&copy; 2023 AnzzCode - All Rights Reserved</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </footer>
 
-        // get input values
-        const plaintext = plaintextInput.value;
-        const key = parseInt(keyInput.value);
+  <script>
+    const encrypt = () => {
+      const plaintextInput = document.getElementById("plain-text");
+      const keyInput = document.getElementById("key-encrypt");
+      const resultElement = document.getElementById("result-encrypt");
 
-        // perform encryption
-        let ciphertext = "";
-        for (let i = 0; i < plaintext.length; i++) {
-          const charCode = plaintext.charCodeAt(i);
-          let newCharCode = charCode;
-          if (charCode >= 65 && charCode <= 90) {
-            // uppercase letters
-            newCharCode = ((charCode - 65 + key) % 26) + 65;
-          } else if (charCode >= 97 && charCode <= 122) {
-            // lowercase letters
-            newCharCode = ((charCode - 97 + key) % 26) + 97;
-          }
-          ciphertext += String.fromCharCode(newCharCode);
+      // get input values
+      const plaintext = plaintextInput.value;
+      const key = parseInt(keyInput.value);
+
+      // perform encryption
+      let ciphertext = "";
+      for (let i = 0; i < plaintext.length; i++) {
+        const charCode = plaintext.charCodeAt(i);
+        let newCharCode = charCode;
+        if (charCode >= 65 && charCode <= 90) {
+          // uppercase letters
+          newCharCode = ((charCode - 65 + key) % 26) + 65;
+        } else if (charCode >= 97 && charCode <= 122) {
+          // lowercase letters
+          newCharCode = ((charCode - 97 + key) % 26) + 97;
+        }
+        ciphertext += String.fromCharCode(newCharCode);
+      }
+
+      // update result element
+      resultElement.textContent = ciphertext;
+    };
+
+    const decrypt = () => {
+      const cipherTextInput = document.getElementById("cipher-text");
+      const keyInput = document.getElementById("key-decrypt");
+      const result = document.getElementById("result-decrypt");
+
+      const cipherText = cipherTextInput.value;
+      const key = parseInt(keyInput.value);
+
+      let plaintext = "";
+      for (let i = 0; i < cipherText.length; i++) {
+        let charCode = cipherText.charCodeAt(i);
+        let newCharCode = charCode;
+        if (charCode >= 65 && charCode <= 90) {
+          newCharCode = ((charCode - 65 - key + 26) % 26) + 65;
+        } else if (charCode >= 97 && charCode <= 122) {
+          newCharCode = ((charCode - 97 - key + 26) % 26) + 97;
         }
 
-        // update result element
-        resultElement.textContent = ciphertext;
-      };
+        plaintext += String.fromCharCode(newCharCode);
+      }
 
-      const decrypt = () => {
-        const cipherTextInput = document.getElementById("cipher-text");
-        const keyInput = document.getElementById("key-decrypt");
-        const result = document.getElementById("result-decrypt");
+      result.textContent = plaintext;
+    };
 
-        const cipherText = cipherTextInput.value;
-        const key = parseInt(keyInput.value);
+  </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"></script>
+</body>
 
-        let plaintext = "";
-        for (let i = 0; i < cipherText.length; i++) {
-          let charCode = cipherText.charCodeAt(i);
-          let newCharCode = charCode;
-          if (charCode >= 65 && charCode <= 90) {
-            newCharCode = ((charCode - 65 - key + 26) % 26) + 65;
-          } else if (charCode >= 97 && charCode <= 122) {
-            newCharCode = ((charCode - 97 - key + 26) % 26) + 97;
-          }
-
-          plaintext += String.fromCharCode(newCharCode);
-        }
-
-        result.textContent = plaintext;
-      };
-    </script>
-  </body>
 </html>
 
 <!-- 
