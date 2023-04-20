@@ -8,6 +8,7 @@
   <link rel="icon" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/encryption-19-109178.png?f=webp&w=512"
     type="image/x-icon" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
@@ -138,11 +139,45 @@
     margin-bottom: 5px;
   }
 
-  .copy {
-    margin-top: 30px;
-  }
+  .fa-copy {
+  position: relative;
+  font-size: 1.5em;
+  color: #7f8fa6;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
 
-  @media only screen and (max-width: 768px) {
+.fa-copy::before {
+  content: "\f0c5"; /* kode unicode untuk ikon copy */
+  font-family: "Font Awesome 5 Free";
+  font-weight: lighter;
+}
+
+.fa-copy:hover {
+  color: #2d98da;
+}
+
+.fa-copy::after {
+  content: "Copy";
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  font-size: .55em;
+  text-transform: lowercase;
+  white-space: nowrap;
+  background-color: none;
+  color: #626264;
+}
+
+.fa-copy:hover::after {
+  display: inline-block;
+  bottom: calc(100% + 0.5em); /* jarak antara ikon dengan output */
+}
+
+
+@media only screen and (max-width: 768px) {
     .caesar {
       display: grid;
     }
@@ -151,7 +186,7 @@
       display: flex;
       flex-direction: column;
     }
-  }
+}
 </style>
 
 <body>
@@ -159,34 +194,36 @@
 
   <div class="caesar">
     <div class="box">
-      <h3 class="title">Enskripsi Caesar Cipher</h3>
+      <h3 class="title">Enkripsi Caesar Cipher</h3>
       <div class="inp">
         <label for="plain-text">Plain Text</label>
-        <input type="text" id="plain-text" />
+        <input type="text" id="plain-text" required="true" />
       </div>
       <div class="inp">
         <label for="key-encrypt">Key Number</label>
-        <input type="text" id="key-encrypt" />
+        <input type="text" id="key-encrypt" required="true" />
       </div>
       <div class="bs">
-        <button onclick="encrypt()">Enskripsi</button>
+        <button onclick="encrypt()">Enkripsi</button>
         <span id="result-encrypt"></span>
+        <i onclick="copyText()" class="fa-thin fa-copy" style="color: #c2c8d6;"></i>
       </div>
     </div>
 
     <div class="box">
-      <h3 class="title">Deskripsi Caesar Cipher</h3>
+      <h3 class="title">Dekripsi Caesar Cipher</h3>
       <div class="inp">
         <label for="plain-text">Cipher Text</label>
-        <input type="text" id="cipher-text" />
+        <input type="text" id="cipher-text" required="true" />
       </div>
       <div class="inp">
         <label for="key-decrypt">Key Number</label>
-        <input type="text" id="key-decrypt" />
+        <input type="text" id="key-decrypt" required="true" />
       </div>
       <div class="bs">
-        <button onclick="decrypt()">Deskripsi</button>
-        <span id="result-decrypt" aria-placeholder="result"></span>
+        <button onclick="decrypt()">Dekripsi</button>
+        <span id="result-decrypt"></span>
+        <i onclick="copyText()" class="fa-thin fa-copy" style="color: #c2c8d6;"></i>
       </div>
     </div>
   </div>
@@ -262,6 +299,30 @@
 
       result.textContent = plaintext;
     };
+
+    function copyText() {
+      // Get the text to copy
+      var textToCopy = document.getElementById("result-encrypt").innerText;
+
+      // Create a temporary input element
+      var tempInput = document.createElement("input");
+      tempInput.value = textToCopy;
+
+      // Add the temporary input element to the DOM
+      document.body.appendChild(tempInput);
+
+      // Select the text in the temporary input element
+      tempInput.select();
+
+      // Copy the selected text to clipboard
+      document.execCommand("copy");
+
+      // Remove the temporary input element from the DOM
+      document.body.removeChild(tempInput);
+
+      // Show notification
+      alert("Teks telah disalin ke clipboard!");
+    }
 
   </script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
