@@ -224,7 +224,7 @@
       <div class="bs">
         <button onclick="decrypt()">Dekripsi</button>
         <span id="result-decrypt"></span>
-        <i onclick="copyText()" class="fa-thin fa-copy" style="color: #c2c8d6;"></i>
+        <i onclick="copyText2()" class="fa-thin fa-copy" style="color: #c2c8d6;"></i>
       </div>
     </div>
   </div>
@@ -301,9 +301,33 @@
       result.textContent = plaintext;
     };
 
-    function copyText() {
+    const copyText = () =>{
       // Get the text to copy
       var textToCopy = document.getElementById("result-encrypt").innerText;
+
+      // Create a temporary input element
+      var tempInput = document.createElement("input");
+      tempInput.value = textToCopy;
+
+      // Add the temporary input element to the DOM
+      document.body.appendChild(tempInput);
+
+      // Select the text in the temporary input element
+      tempInput.select();
+
+      // Copy the selected text to clipboard
+      document.execCommand("copy");
+
+      // Remove the temporary input element from the DOM
+      document.body.removeChild(tempInput);
+
+      // Show notification
+      alert("Teks telah disalin ke clipboard!");
+    }
+
+    const copyText2 = () =>{
+      // Get the text to copy
+      var textToCopy = document.getElementById("result-decrypt").innerText;
 
       // Create a temporary input element
       var tempInput = document.createElement("input");
