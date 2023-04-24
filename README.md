@@ -103,7 +103,8 @@ Tugas Pemrograman Web
       $plaintext = $_POST['plaintext'];
       $key = $_POST['key'];
       $ciphertext = encrypt($plaintext, $key);
-      echo "<p>Encrypted Text: " . $ciphertext . "</p>";
+      echo "<p>Plain Text : " . $plaintext . "</p>";
+      echo "<p>Encrypted Text : " . $ciphertext . "</p>";
     }
     if (isset($_POST['decrypt']) && isset($_POST['cipher-text']) && isset($_POST['key'])) {
       $ciphertext = $_POST['cipher-text'];
