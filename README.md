@@ -63,23 +63,7 @@ Tugas Pemrograman Web
 * PHP `index.php`
 ```PHP
 <?php
-    if (isset($_POST['encrypt']) && isset($_POST['plaintext']) && isset($_POST['key'])) {
-      $plaintext = $_POST['plaintext'];
-      $key = $_POST['key'];
-      $ciphertext = encrypt($plaintext, $key);
-      echo "<p>Plain Text : " . $plaintext . "</p>";
-      echo "<p>Key : " . $key . "</p>";
-      echo "<p>Encrypted Text : " . $ciphertext . "</p>";
-    }
-    if (isset($_POST['decrypt']) && isset($_POST['cipher-text']) && isset($_POST['key'])) {
-      $ciphertext = $_POST['cipher-text'];
-      $key = $_POST['key'];
-      $plaintext = decrypt($ciphertext, $key);
-      echo "<p>Cipher Text : " . $ciphertext . "</p>";
-      echo "<p>Key : " . $key . "</p>";
-      echo "<p>Decrypted Text : " . $plaintext . "</p>";
-    }
-    
+
     function encrypt($plaintext, $key) {
       $ciphertext = "";
       $length = strlen($plaintext);
