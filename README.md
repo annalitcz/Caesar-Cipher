@@ -6,9 +6,11 @@ Tugas Pemrograman Web
 - Kelas : Sistem Informasi 2A
 
 # Tampilan Program 
-- ![index.html (Javascript)](./screenshot/js.png)
+- `index.html (Javascript)`
+![index.html (Javascript)](./screenshot/js.png)
 
-- ![index.php](./screenshot/php.png)
+- `index.php`
+![index.php](./screenshot/php.png)
 
 # Script Caesar Cipher
 * JavaScript `index.html`
