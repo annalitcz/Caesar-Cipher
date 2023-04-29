@@ -5,6 +5,13 @@ Tugas Pemrograman Web
 - Npm   : 2113030041
 - Kelas : Sistem Informasi 2A
 
+# Tampilan Program 
+- `index.html (Javascript)`
+![Tampilan program](./screenshot/js.png =250x)
+
+- `index.php`
+![Tampilan program](./screenshot/php.png =250x)
+
 # Script Caesar Cipher
 * JavaScript `index.html`
 ```JavaScript
